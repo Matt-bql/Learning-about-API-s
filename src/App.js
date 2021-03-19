@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Container from "./components/Container";
+import Modal from "./components/Modal";
+
+class App extends React.Component {
+  state = { isModalOpen: false };
+  render() {
+    const arr = [
+      { type: "Books", color: "blue" },
+      { type: "Characters", color: "red" },
+      { type: "Houses", color: "purple" }
+    ];
+    return (
+      <div>
+        <>
+          <div>
+            <Modal
+              isModalOpen={true}
+              closeModal={() => {
+                this.setState({ isModalOpen: false });
+              }}
+            >
+              <div>
+                {arr.map((item) => {
+                  return (
+                    <div>
+                      <Container options={item} />
+                    </div>
+                  );
+                })}
+              </div>
+            </Modal>
+          </div>
+        </>
+      </div>
+    );
+  }
 }
 
 export default App;
