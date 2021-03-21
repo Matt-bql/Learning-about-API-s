@@ -1,7 +1,7 @@
 import React from "react";
-
 import Container from "./components/Container";
 import Modal from "./components/Modal";
+import './styles/stylereset.css'
 
 class App extends React.Component {
   state = { isModalOpen: false };

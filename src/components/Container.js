@@ -1,7 +1,7 @@
 import React from "react";
 import List from "./List";
 import Modal from "./Modal";
-//import "./css/App.css";
+
 
 class Container extends React.Component {
   state = { showModal: false, data: [] };

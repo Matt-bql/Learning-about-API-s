@@ -1,6 +1,6 @@
 import React from "react";
 // import List from "./List.js";
-//import "./css/App.css";
+
 
 function Modal({ isModalOpen, children, closeModal }) {
   if (!isModalOpen) {

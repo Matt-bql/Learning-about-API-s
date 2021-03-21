@@ -1,8 +1,8 @@
 import React from "react";
 // import Modal from "./Modal";
 // import ListType from "./ListType";
-//import "./css/App.css";
-//import App from "./App.js";
+
+
 
 const List = (props) => {
   const { data } = props;
