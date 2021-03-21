@@ -1,5 +1,4 @@
 import React from "react";
-// import List from "./List.js";
 
 function Modal({ isModalOpen, children, closeModal }) {
   if (!isModalOpen) {
@@ -7,8 +6,9 @@ function Modal({ isModalOpen, children, closeModal }) {
   }
   return (
     <div>
-      {children} <button onClick={closeModal}> Back</button>
+      {children} <button onClick={closeModal}>Back</button>
     </div>
   );
 }
 export default Modal;
+//

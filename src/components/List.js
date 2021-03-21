@@ -12,7 +12,13 @@ const List = (props) => {
       {data.map((d) => {
         return (
           <div className="modal-container">
-            <p onClick={console.log(d)} key={d.name}>
+            <p
+              className="isClickablePointer"
+              onClick={(d) => {
+                return <div>{d}</div>;
+              }}
+              key={d.name}
+            >
               {d.name}
             </p>
           </div>
