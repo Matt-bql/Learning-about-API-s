@@ -1,7 +1,8 @@
 import React from "react";
 import Container from "./components/Container";
 import Modal from "./components/Modal";
-import './styles/stylereset.css'
+import "./styles/stylereset.css";
+import "./styles/style.css";
 
 class App extends React.Component {
   state = { isModalOpen: false };
@@ -9,12 +10,12 @@ class App extends React.Component {
     const arr = [
       { type: "Books", color: "blue" },
       { type: "Characters", color: "red" },
-      { type: "Houses", color: "purple" }
+      { type: "Houses", color: "purple" },
     ];
     return (
-      <div>
+      <div className="body-container">
         <>
-          <div>
+          <div className="category-container">
             <Modal
               isModalOpen={true}
               closeModal={() => {
@@ -24,12 +25,13 @@ class App extends React.Component {
               <div>
                 {arr.map((item) => {
                   return (
-                    <div>
+                    <div className="category-style">
                       <Container options={item} />
                     </div>
                   );
                 })}
               </div>
+              asdf
             </Modal>
           </div>
         </>

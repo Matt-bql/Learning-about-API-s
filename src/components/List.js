@@ -2,8 +2,6 @@ import React from "react";
 // import Modal from "./Modal";
 // import ListType from "./ListType";
 
-
-
 const List = (props) => {
   const { data } = props;
 
