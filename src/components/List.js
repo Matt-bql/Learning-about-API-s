@@ -1,39 +1,43 @@
-import React from "react";
-// import Modal from "./Modal";
+import React, { useState } from "react";
+import Modal from "./Modal";
 // import ListType from "./ListType";
 
 const List = (props) => {
-  const { data } = props;
-
+  const [modalIsOpen, setModalOpen] = useState(false);
+  const { data, isListOpen, closeList } = props;
+  // const { isModalOpen, closeModal } = props;
+  //isModalOpen={showModal}
+  // closeModal={() => {
+  //   this.setState({ showModal: false });
+  // }}
+  // function closeList() {
+  //   this.setState({ isListOpen: false });
+  // }
+  if (!isListOpen) {
+    return null;
+  }
   return (
-    //anything inside the open tag of <ListType--->gets passed
-    //along as a children prop.
     <div>
       {data.map((d) => {
         return (
-          <div className="modal-container">
+          <div className="List-container" key={d.name}>
             <p
               className="isClickablePointer"
-              onClick={(d) => {
-                return <div>{d}</div>;
+              onClick={() => {
+                setModalOpen(true);
               }}
-              key={d.name}
             >
               {d.name}
             </p>
+            {modalIsOpen && <Modal setModalOpen={setModalOpen} />}
           </div>
         );
       })}
-      <div></div>
+
+      <button onClick={closeList} data={data}>
+        Close
+      </button>
     </div>
   );
 };
 export default List;
-
-// 1. if li is an ordered list then it will look at List.js
-// 2. List.js will map over the name value of whichever endpoint is needed
-//        and return '<li>{d.name}</li>'.
-// 3. List.js passes the return value of data.map (<li>{d.name}</li>) to
-//        ListType.js(as well as the variable 'isOrdered' which is equal to
-//        false in this component.).
-// 4. ListType.js will then look at the value of child prop**** 'isOrdered' and will return the

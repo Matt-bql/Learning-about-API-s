@@ -1,49 +1,56 @@
 import React from "react";
 import List from "./List";
 import Modal from "./Modal";
-
 class Container extends React.Component {
-  state = { showModal: false, data: [] };
+  state = { showList: false, data: [], isModelOpen: false };
 
-  onClickFetchHandler = () => {
+  componentDidMount() {
     try {
-      if (this.state.data.length === 0) {
-        fetch(`https://www.anapioficeandfire.com/api/${this.props.item.type}`)
-          .then((res) => res.json())
-          .then((res) => {
-            this.setState({ data: res });
-            console.log("success");
-          });
-      }
-
-      this.setState({ showModal: !this.state.showModal });
+      fetch(`https://www.anapioficeandfire.com/api/${this.props.item.type}`)
+        .then((res) => res.json())
+        .then((res) => {
+          this.setState({ data: res });
+          console.log("success");
+        });
     } catch (err) {
       console.log("error fetching data", err);
     }
+  }
+  closeList = () => {
+    this.setState({ showList: false });
   };
+  // onClickFetchHandler = () => {
+  //   try {
+  //     if (this.state.data.length === 0) {
+  //       fetch(`https://www.anapioficeandfire.com/api/${this.props.item.type}`)
+  //         .then((res) => res.json())
+  //         .then((res) => {
+  //           this.setState({ data: res });
+  //           console.log("success");
+  //         });
+  //     }
+
+  //     this.setState({ showModal: !this.state.showModal });
+  //   } catch (err) {
+  //     console.log("error fetching data", err);
+  //   }
+  // };
 
   render() {
-    const { showModal, data } = this.state;
+    const { showList, data, isModalOpen } = this.state;
     return (
       <div>
         <div>
           <p
             className="isClickablePointer"
             style={{ color: this.props.item.color }}
-            onClick={this.onClickFetchHandler}
-          >
-            {this.props.item.type}
-          </p>
-
-          <Modal
-            isModalOpen={showModal}
-            closeModal={() => {
-              this.setState({ showModal: false });
+            onClick={() => {
+              this.setState({ showList: true });
             }}
           >
-            {" "}
-            <List data={data} />{" "}
-          </Modal>
+            {this.props.item.type}
+          </p>{" "}
+          <List closeList={this.closeList} isListOpen={showList} data={data} />{" "}
         </div>
       </div>
     );

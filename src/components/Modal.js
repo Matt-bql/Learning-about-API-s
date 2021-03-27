@@ -1,14 +1,7 @@
 import React from "react";
 
-function Modal({ isModalOpen, children, closeModal }) {
-  if (!isModalOpen) {
-    return null;
-  }
-  return (
-    <div>
-      {children} <button onClick={closeModal}>Back</button>
-    </div>
-  );
+function Modal({ data: { name } }) {
+  return <div>{name}</div>;
 }
 export default Modal;
 //
