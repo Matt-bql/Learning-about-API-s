@@ -1,6 +1,5 @@
 import React from "react";
 import Container from "./components/Container";
-
 import "./styles/stylereset.css";
 import "./styles/style.css";
 console.log("render");

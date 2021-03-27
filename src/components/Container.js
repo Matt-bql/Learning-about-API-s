@@ -1,8 +1,12 @@
 import React from "react";
 import List from "./List";
 import Modal from "./Modal";
+import BookContent from "./BookContent";
+import CharacterContent from "./CharacterContent";
+import HouseContent from "./HouseContent";
+// import Modal from "./Modal";
 class Container extends React.Component {
-  state = { showList: false, data: [], isModelOpen: false };
+  state = { showList: false, data: [], modalIsOpen: false };
 
   componentDidMount() {
     try {
@@ -18,6 +22,9 @@ class Container extends React.Component {
   }
   closeList = () => {
     this.setState({ showList: false });
+  };
+  setModalOpen = () => {
+    this.setState({ modalIsOpen: true });
   };
   // onClickFetchHandler = () => {
   //   try {
@@ -37,7 +44,8 @@ class Container extends React.Component {
   // };
 
   render() {
-    const { showList, data, isModalOpen } = this.state;
+    const { showList, data, modalIsOpen } = this.state;
+    // const { type } = this.props;
     return (
       <div>
         <div>
@@ -50,7 +58,21 @@ class Container extends React.Component {
           >
             {this.props.item.type}
           </p>{" "}
-          <List closeList={this.closeList} isListOpen={showList} data={data} />{" "}
+          <List
+            closeList={this.closeList}
+            isListOpen={showList}
+            data={data}
+            setModalOpen={this.setModalOpen}
+          />{" "}
+        </div>
+        <div>
+          {modalIsOpen && (
+            <Modal>
+              {this.props.item.type === "Books" && <BookContent data={data} />}
+              {this.props.item.type === "Characters" && <CharacterContent />}
+              {this.props.item.type === "Houses" && <HouseContent />}
+            </Modal>
+          )}
         </div>
       </div>
     );

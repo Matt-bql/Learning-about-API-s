@@ -1,10 +1,6 @@
-import React, { useState } from "react";
-import Modal from "./Modal";
-// import ListType from "./ListType";
-
 const List = (props) => {
-  const [modalIsOpen, setModalOpen] = useState(false);
-  const { data, isListOpen, closeList } = props;
+  // const [modalIsOpen, setModalOpen] = useState(false);
+  const { data, isListOpen, closeList, setModalOpen } = props;
   // const { isModalOpen, closeModal } = props;
   //isModalOpen={showModal}
   // closeModal={() => {
@@ -16,20 +12,22 @@ const List = (props) => {
   if (!isListOpen) {
     return null;
   }
+
   return (
     <div>
       {data.map((d) => {
         return (
           <div className="List-container" key={d.name}>
-            <p
-              className="isClickablePointer"
-              onClick={() => {
-                setModalOpen(true);
-              }}
-            >
+            <p className="isClickablePointer" onClick={setModalOpen}>
               {d.name}
             </p>
-            {modalIsOpen && <Modal setModalOpen={setModalOpen} />}
+            {/* {modalIsOpen && (
+              <Modal setModalOpen={setModalOpen}>
+                {type === "Books" && <BookContent data={data} />}
+                {type === "Characters" && <CharacterContent data={data} />}
+                {type === "Houses" && <HouseContent data={data} />}
+              </Modal>
+            )} */}
           </div>
         );
       })}
