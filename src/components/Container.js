@@ -39,8 +39,8 @@ class Container extends React.Component {
       <div>
         <div>
           <p
-            className="isClickablePointer"
-            style={{ color: this.props.item.color }}
+            className="category-item-style"
+            // style={{ color: this.props.item.color }}
             onClick={() => {
               this.setState({ showList: true });
             }}

@@ -14,27 +14,29 @@ const List = (props) => {
   }
 
   return (
-    <div>
-      {data.map((d) => {
-        return (
-          <div className="List-container" key={d.name}>
-            <p className="isClickablePointer" onClick={setModalOpen}>
-              {d.name}
-            </p>
-            {/* {modalIsOpen && (
+    <div className="list-container-parent">
+      <div className="list-container">
+        {data.map((d) => {
+          return (
+            <div key={d.name}>
+              <p className="list" onClick={setModalOpen}>
+                {d.name}
+              </p>
+              {/* {modalIsOpen && (
               <Modal setModalOpen={setModalOpen}>
                 {type === "Books" && <BookContent data={data} />}
                 {type === "Characters" && <CharacterContent data={data} />}
                 {type === "Houses" && <HouseContent data={data} />}
               </Modal>
             )} */}
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
 
-      <button onClick={closeList} data={data}>
-        Close
-      </button>
+        <button onClick={closeList} data={data}>
+          Close
+        </button>
+      </div>
     </div>
   );
 };

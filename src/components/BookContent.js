@@ -1,7 +1,6 @@
 import React from "react";
 
 function BookContent({ data }) {
-  return <div>{console.log(data)}</div>;
+  return <div className="modal">BBOOOKKKKSSSS</div>;
 }
 export default BookContent;
-//
