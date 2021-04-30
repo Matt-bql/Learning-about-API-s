@@ -13,8 +13,13 @@ class Container extends React.Component {
       fetch(`https://www.anapioficeandfire.com/api/${this.props.item.type}`)
         .then((res) => res.json())
         .then((res) => {
-          this.setState({ data: res });
-          console.log("success");
+          if (res.length > 0) {
+            for (let i = 0; i < res.length; i++) {
+              res[i].id = i;
+            }
+            this.setState({ data: res });
+            console.log("success!");
+          }
         });
     } catch (err) {
       console.log("error fetching data", err);
@@ -26,22 +31,6 @@ class Container extends React.Component {
   setModalOpen = () => {
     this.setState({ modalIsOpen: true });
   };
-  // onClickFetchHandler = () => {
-  //   try {
-  //     if (this.state.data.length === 0) {
-  //       fetch(`https://www.anapioficeandfire.com/api/${this.props.item.type}`)
-  //         .then((res) => res.json())
-  //         .then((res) => {
-  //           this.setState({ data: res });
-  //           console.log("success");
-  //         });
-  //     }
-
-  //     this.setState({ showModal: !this.state.showModal });
-  //   } catch (err) {
-  //     console.log("error fetching data", err);
-  //   }
-  // };
 
   render() {
     const { showList, data, modalIsOpen } = this.state;
