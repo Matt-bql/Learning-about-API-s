@@ -1,6 +1,12 @@
 import React from "react";
 
-function BookContent({ data }) {
-  return <div className="modal">BBOOOKKKKSSSS</div>;
+function BookContent({ data, filt }) {
+  return (
+    <div>
+      {data.map((d) => (
+        <div>{d.name}</div>
+      ))}
+    </div>
+  );
 }
 export default BookContent;

@@ -36,7 +36,7 @@
 .list-container {
   width: 200px;
   height: 200px;
-  border: solid blue;
+  /* border: solid blue; */
   position: fixed;
   left: 215px;
   bottom: 220px;

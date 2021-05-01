@@ -1,14 +1,8 @@
+// import { filt } from "./BookContent";
+
 const List = (props) => {
-  // const [modalIsOpen, setModalOpen] = useState(false);
-  const { data, isListOpen, closeList, setModalOpen } = props;
-  // const { isModalOpen, closeModal } = props;
-  //isModalOpen={showModal}
-  // closeModal={() => {
-  //   this.setState({ showModal: false });
-  // }}
-  // function closeList() {
-  //   this.setState({ isListOpen: false });
-  // }
+  const { data, isListOpen, closeList, setModalOpen, handleClick } = props;
+
   if (!isListOpen) {
     return null;
   }
@@ -19,23 +13,18 @@ const List = (props) => {
         {data.map((d) => {
           return (
             <div key={d.name}>
-              <p className="list" onClick={setModalOpen}>
+              <p
+                className="list"
+                onClick={(e) => {
+                  handleClick(e.id);
+                }}
+              >
                 {d.name}
               </p>
-              {/* {modalIsOpen && (
-              <Modal setModalOpen={setModalOpen}>
-                {type === "Books" && <BookContent data={data} />}
-                {type === "Characters" && <CharacterContent data={data} />}
-                {type === "Houses" && <HouseContent data={data} />}
-              </Modal>
-            )} */}
             </div>
           );
         })}
-
-        <button onClick={closeList} data={data}>
-          Close
-        </button>
+        <button onClick={closeList}>Close</button>
       </div>
     </div>
   );
