@@ -1,9 +1,9 @@
 import React from "react";
 
-function BookContent({ data, filt }) {
+function BookContent({ data, filteredData }) {
   return (
     <div>
-      {data.map((d) => (
+      {filteredData.map((d) => (
         <div key={d.name}>{d.name}</div>
       ))}
     </div>
