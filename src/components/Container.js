@@ -6,7 +6,7 @@ import CharacterContent from "./CharacterContent";
 import HouseContent from "./HouseContent";
 // import Modal from "./Modal";
 class Container extends React.Component {
-  state = { showList: false, data: [], modalIsOpen: false, filt: [] };
+  state = { showList: false, data: [], modalIsOpen: false, filteredData: [] };
 
   componentDidMount() {
     try {
@@ -36,16 +36,16 @@ class Container extends React.Component {
   handleClick = (id) => {
     const { data } = this.state;
     const newArray = data.filter((dat) => {
-      return dat.id !== id;
+      return dat === id;
     });
     // this.setState({ filt: e.id });
     console.log(newArray);
   };
 
   render() {
-    const { showList, data, modalIsOpen, filt } = this.state;
+    const { showList, data, modalIsOpen, filteredData } = this.state;
     // const { type } = this.props;
-    console.log(this.state.filt);
+    console.log(this.state.filteredData);
     return (
       <div>
         <div>
@@ -70,7 +70,7 @@ class Container extends React.Component {
           {modalIsOpen && (
             <Modal data={data}>
               {this.props.item.type === "Books" && (
-                <BookContent data={data} filt={filt} />
+                <BookContent data={data} filteredData={filteredData} />
               )}
               {this.props.item.type === "Characters" && <CharacterContent />}
               {this.props.item.type === "Houses" && <HouseContent />}

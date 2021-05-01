@@ -1,5 +1,3 @@
-// import { filt } from "./BookContent";
-
 const List = (props) => {
   const { data, isListOpen, closeList, setModalOpen, handleClick } = props;
 
@@ -15,8 +13,9 @@ const List = (props) => {
             <div key={d.name}>
               <p
                 className="list"
-                onClick={(e) => {
-                  handleClick(e.id);
+                onClick={() => {
+                  setModalOpen();
+                  handleClick(data.id);
                 }}
               >
                 {d.name}
