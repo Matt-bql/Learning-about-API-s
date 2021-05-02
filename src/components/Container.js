@@ -38,7 +38,7 @@ class Container extends React.Component {
     const newArray = data.filter((dat) => {
       return dat === id;
     });
-    // this.setState({ filt: e.id });
+    this.setState({ filteredData: newArray });
     console.log(newArray);
   };
 

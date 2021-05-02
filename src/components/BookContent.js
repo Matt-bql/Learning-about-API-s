@@ -4,7 +4,7 @@ function BookContent({ data, filteredData }) {
   return (
     <div>
       {filteredData.map((d) => (
-        <div key={d.name}>{d.name}</div>
+        <div key={d.name}>{d}</div>
       ))}
     </div>
   );
