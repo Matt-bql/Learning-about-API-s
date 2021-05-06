@@ -6,7 +6,7 @@ import CharacterContent from "./CharacterContent";
 import HouseContent from "./HouseContent";
 // import Modal from "./Modal";
 class Container extends React.Component {
-  state = { showList: false, data: [], modalIsOpen: false, filteredData: [] };
+  state = { showList: false, data: [], modalIsOpen: false, selectedItem: [] };
 
   componentDidMount() {
     try {
@@ -15,7 +15,7 @@ class Container extends React.Component {
         .then((res) => {
           if (res.length > 0) {
             for (let i = 0; i < res.length; i++) {
-              res[i].id = i;
+              res[i].id = i + 1;
             }
             this.setState({ data: res });
             console.log("success!");
@@ -32,20 +32,14 @@ class Container extends React.Component {
   setModalOpen = () => {
     this.setState({ modalIsOpen: true });
   };
-
-  handleClick = (id) => {
-    const { data } = this.state;
-    const newArray = data.filter((dat) => {
-      return dat === id;
-    });
-    this.setState({ filteredData: newArray });
-    console.log(newArray);
+  handleClickk = (id) => {
+    const selectedItem = this.state.data.filter((data) => data.id === id)[0];
+    console.log(id);
+    this.setState({ selectedItem: selectedItem, modalIsOpen: true });
   };
 
   render() {
-    const { showList, data, modalIsOpen, filteredData } = this.state;
-    // const { type } = this.props;
-    console.log(this.state.filteredData);
+    const { showList, data, modalIsOpen, selectedItem } = this.state;
     return (
       <div>
         <div>
@@ -63,14 +57,14 @@ class Container extends React.Component {
             isListOpen={showList}
             data={data}
             setModalOpen={this.setModalOpen}
-            handleClick={this.handleClick}
+            handleClick={this.handleClickk}
           />{" "}
         </div>
         <div>
           {modalIsOpen && (
             <Modal data={data}>
               {this.props.item.type === "Books" && (
-                <BookContent data={data} filteredData={filteredData} />
+                <BookContent data={data} selectedItem={selectedItem} />
               )}
               {this.props.item.type === "Characters" && <CharacterContent />}
               {this.props.item.type === "Houses" && <HouseContent />}

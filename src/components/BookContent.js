@@ -1,11 +1,11 @@
 import React from "react";
 
-function BookContent({ data, filteredData }) {
+function BookContent({ selectedItem }) {
   return (
     <div>
-      {filteredData.map((d) => (
-        <div key={d.name}>{d}</div>
-      ))}
+      <h2>{selectedItem.name}</h2>
+      <h4>Release Date: {selectedItem.released}</h4>
+      <p>{selectedItem.characters}</p>
     </div>
   );
 }

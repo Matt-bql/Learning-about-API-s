@@ -1,5 +1,5 @@
 const List = (props) => {
-  const { data, isListOpen, closeList, setModalOpen, handleClick } = props;
+  const { data, isListOpen, closeList, handleClick } = props;
 
   if (!isListOpen) {
     return null;
@@ -8,22 +8,16 @@ const List = (props) => {
   return (
     <div className="list-container-parent">
       <div className="list-container">
+        <button onClick={closeList}>Close</button>
         {data.map((d) => {
           return (
             <div key={d.name}>
-              <p
-                className="list"
-                onClick={() => {
-                  setModalOpen();
-                  handleClick(data.id);
-                }}
-              >
+              <p className="list" onClick={() => handleClick(d.id)}>
                 {d.name}
               </p>
             </div>
           );
         })}
-        <button onClick={closeList}>Close</button>
       </div>
     </div>
   );
