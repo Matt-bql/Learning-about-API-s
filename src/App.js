@@ -6,14 +6,18 @@ console.log("render");
 class App extends React.Component {
   state = {};
   render() {
-    const arr = [{ type: "Books" }, { type: "Characters" }, { type: "Houses" }];
+    const arr = [
+      { type: "Books", id: 1 },
+      { type: "Characters", id: 2 },
+      { type: "Houses", id: 3 },
+    ];
 
     return (
       <div className="body-container">
         <div className="category-container">
           {arr.map((item) => {
             return (
-              <div className="category-style">
+              <div key={item.id} className="category-style">
                 <Container item={item} />
               </div>
             );
