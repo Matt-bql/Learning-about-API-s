@@ -26,9 +26,9 @@ class CharactersPerBook extends React.Component {
     const { listOfCharacters } = this.state;
     console.log(listOfCharacters);
     return (
-      <div>
+      <div className="characters-names-container">
         {listOfCharacters.map((char) => (
-          <p>{char.name}</p>
+          <p className="characters-names">{char.name}</p>
         ))}
       </div>
     );
