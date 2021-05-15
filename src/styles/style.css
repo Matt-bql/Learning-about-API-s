@@ -56,11 +56,12 @@
   width: 550px;
   height: 330px;
   overflow: auto;
-  border: rgb(94, 83, 83);
+  border: solid rgb(34, 34, 34);
   background-color: rgb(80, 80, 80);
   left: 450px;
   bottom: 220px;
 }
+
 .modal-content-container {
   display: flex;
   align-items: center;
@@ -77,11 +78,15 @@
   position: fixed;
   width: 125px;
   height: 200px;
-  border: solid rgb(68, 68, 68);
+  border: solid rgb(43, 43, 43);
   overflow: auto;
 }
+.modal-booktitle {
+  font-size: 32px;
+  margin: 10px 0 0 0;
+}
 .character-name-intro {
-  margin-top: 5px;
+  margin-top: 15px;
   font-size: 20px;
   align-content: center;
 }
