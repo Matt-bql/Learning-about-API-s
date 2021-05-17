@@ -5,11 +5,6 @@ class CharactersPerBook extends React.Component {
     listOfCharacters: [],
     name: "",
   };
-  //loop over the characters array of a book and
-  //create a promise to fetch data of that character
-  //and push the promise to an array
-  //take the array of promises you created from the
-  //loop and use promise.all to get all the data
 
   async componentDidMount() {
     const { selectedItem } = this.props;
@@ -21,7 +16,7 @@ class CharactersPerBook extends React.Component {
           fetch(char).then((res) => res.json())
         )
       );
-      console.log(characterData);
+      // console.log(characterData);
       this.setState({
         listOfCharacters: characterData,
         name: this.props.selectedItem.name,
@@ -45,10 +40,26 @@ class CharactersPerBook extends React.Component {
       });
     }
   }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem(
+      "listOfCharacters",
+      JSON.stringify(nextState.listOfCharacters)
+    );
+  }
+  componentWillMount() {
+    localStorage.getItem(
+      "listOfCharacters" &&
+        this.setState({
+          listOfCharacters: JSON.parse(
+            localStorage.getItem("listOfCharacters")
+          ),
+        })
+    );
+  }
 
   render() {
     const { listOfCharacters } = this.state;
-    console.log(listOfCharacters);
+    // console.log(listOfCharacters);
     return (
       <div className="characters-names-container">
         {listOfCharacters.length > 0 &&
