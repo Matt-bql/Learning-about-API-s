@@ -1,8 +1,8 @@
 import React from "react";
 import CharactersPerBook from "./CharactersPerBook";
-
+console.log("rendered bookcontent!");
 function BookContent({ selectedItem }) {
-  console.log(selectedItem);
+  console.log("bookcontent!!", selectedItem);
 
   return (
     <div className="modal-content-container">
