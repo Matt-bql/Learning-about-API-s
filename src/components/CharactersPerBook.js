@@ -36,7 +36,6 @@ function CharactersPerBook({ selectedItem }) {
 
   return (
     <div className="characters-names-container">
-      test
       {listOfCharacters.map((char, index) => (
         <p key={index} className="characters-names">
           {char.name}

@@ -5,6 +5,7 @@ import BookContent from "./BookContent";
 import CharacterContent from "./CharacterContent";
 import HouseContent from "./HouseContent";
 console.log("container render");
+
 function Container({ item }) {
   const [showList, setShowList] = useState(false);
   const [data, setData] = useState([]);
@@ -24,7 +25,7 @@ function Container({ item }) {
           setData(res);
           console.log("success!!!");
         }),
-    []
+    [item.type]
   );
 
   // componentDidMount   () {
