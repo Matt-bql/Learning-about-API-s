@@ -1,70 +1,97 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import List from "./List";
 import Modal from "./Modal";
 import BookContent from "./BookContent";
 import CharacterContent from "./CharacterContent";
 import HouseContent from "./HouseContent";
-// import Modal from "./Modal";
-class Container extends React.Component {
-  state = { showList: false, data: [], modalIsOpen: false };
+console.log("container render");
 
-  componentDidMount() {
-    try {
-      fetch(`https://www.anapioficeandfire.com/api/${this.props.item.type}`)
+function Container({ item }) {
+  const [showList, setShowList] = useState(false);
+  const [data, setData] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState([]);
+
+  useEffect(
+    () =>
+      fetch(`https://www.anapioficeandfire.com/api/${item.type}`)
         .then((res) => res.json())
         .then((res) => {
           if (res.length > 0) {
             for (let i = 0; i < res.length; i++) {
-              res[i].id = i;
+              res[i].id = i + 1;
             }
-            this.setState({ data: res });
-            console.log("success!");
           }
-        });
-    } catch (err) {
-      console.log("error fetching data", err);
-    }
-  }
-  closeList = () => {
-    this.setState({ showList: false });
-  };
-  setModalOpen = () => {
-    this.setState({ modalIsOpen: true });
-  };
+          setData(res);
+          console.log("success!!!");
+        }),
+    [item.type]
+  );
 
-  render() {
-    const { showList, data, modalIsOpen } = this.state;
-    // const { type } = this.props;
-    return (
-      <div>
-        <div>
-          <p
-            className="isClickablePointer"
-            style={{ color: this.props.item.color }}
-            onClick={() => {
-              this.setState({ showList: true });
-            }}
-          >
-            {this.props.item.type}
-          </p>{" "}
-          <List
-            closeList={this.closeList}
-            isListOpen={showList}
-            data={data}
-            setModalOpen={this.setModalOpen}
-          />{" "}
-        </div>
-        <div>
-          {modalIsOpen && (
-            <Modal>
-              {this.props.item.type === "Books" && <BookContent data={data} />}
-              {this.props.item.type === "Characters" && <CharacterContent />}
-              {this.props.item.type === "Houses" && <HouseContent />}
-            </Modal>
-          )}
-        </div>
-      </div>
-    );
+  // componentDidMount   () {
+  //   try {
+  //     fetch(`https://www.anapioficeandfire.com/api/${this.props.item.type}`)
+  //      .then((res) => res.json())
+  //       .then((res) => {
+  // if (res.length > 0) {
+  //   for (let i = 0; i < res.length; i++) {
+  //     res[i].id = i + 1;
+  //   }
+  //           this.setState({ data: res });
+  //           console.log("success!");
+  //         }
+  //       });
+  //   } catch (err) {
+  //     console.log("error fetching data", err);
+  //   }
+  // }
+
+  // FUNCTIONS
+  function closeList() {
+    setShowList(false);
   }
+  function setModalOpen() {
+    setModalIsOpen(true);
+  }
+  function handleClick(id) {
+    const selectedItem = data.filter((data) => data.id === id)[0];
+    console.log(id);
+    setSelectedItem(selectedItem);
+    setModalIsOpen(true);
+  }
+
+  return (
+    <div>
+      <div>
+        <p
+          className="category-item-style"
+          // style={{ color: this.props.item.color }}
+          onClick={() => {
+            setShowList(true);
+          }}
+        >
+          {item.type}
+        </p>{" "}
+        <List
+          closeList={closeList}
+          isListOpen={showList}
+          data={data}
+          setModalOpen={setModalOpen}
+          handleClick={handleClick}
+        />{" "}
+      </div>
+      <div>
+        {modalIsOpen && (
+          <Modal data={data}>
+            {item.type === "Books" && (
+              <BookContent data={data} selectedItem={selectedItem} />
+            )}
+            {item.type === "Characters" && <CharacterContent />}
+            {item.type === "Houses" && <HouseContent />}
+          </Modal>
+        )}
+      </div>
+    </div>
+  );
 }
 export default Container;

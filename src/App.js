@@ -1,32 +1,28 @@
 import React from "react";
 import Container from "./components/Container";
-import "./styles/stylereset.css";
-import "./styles/style.css";
+import "./scss/stylereset.scss";
+import "./scss/style.scss";
 console.log("render");
 class App extends React.Component {
   state = {};
   render() {
     const arr = [
-      { type: "Books", color: "blue" },
-      { type: "Characters", color: "red" },
-      { type: "Houses", color: "purple" },
+      { type: "Books", id: 1 },
+      // { type: "Characters", id: 2 },
+      // { type: "Houses", id: 3 },
     ];
 
     return (
       <div className="body-container">
-        <>
-          <div className="category-container">
-            <div>
-              {arr.map((item) => {
-                return (
-                  <div className="category-style">
-                    <Container item={item} />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </>
+        <div className="category-container">
+          {arr.map((item) => {
+            return (
+              <div key={item.id} className="category-style">
+                <Container item={item} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
